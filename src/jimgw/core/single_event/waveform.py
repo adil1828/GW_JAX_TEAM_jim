@@ -23,7 +23,8 @@ from ripplegw.waveforms.IMRPhenomD_utils import (
 )
 
 from ripplegw.waveforms.IMRPhenomD_QNMdata import fM_CUT
-from ripplegw.constants import EulerGamma, gt, m_per_Mpc, C, PI
+from ripplegw.constants import  gt, m_per_Mpc, C, PI # EulerGamma,
+from jimgw.core.constants import *
 from ripplegw.typing import Array
 from ripplegw import Mc_eta_to_ms
 
