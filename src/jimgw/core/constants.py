@@ -6,7 +6,7 @@ G = 6.67430e-11  # m^3 / kg / s^2
 
 C_SI = 299792458.0
 """ Speed of light, m/s """
-
+C = C_SI
 MSUN = 1.988409870698050731911960804878414216e30
 """ Nominal solar mass, kg """
 
