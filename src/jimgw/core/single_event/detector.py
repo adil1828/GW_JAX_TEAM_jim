@@ -253,7 +253,7 @@ class GroundBased2G(Detector):
         yarm_azimuth: float = 0,
         xarm_tilt: float = 0,
         yarm_tilt: float = 0,
-        modes: str = "pc",
+        modes: str = "pcb",
     ):
         """Initialize a ground-based detector.
 
@@ -759,7 +759,7 @@ def get_H1() -> GroundBased2G:
         xarm_tilt=-6.195e-4,
         yarm_tilt=1.25e-5,
         elevation=142.554,
-        modes="pc",
+        modes="pcb",
     )
 
 
@@ -774,7 +774,7 @@ def get_L1() -> GroundBased2G:
         xarm_tilt=-3.121e-4,
         yarm_tilt=-6.107e-4,
         elevation=-6.574,
-        modes="pc",
+        modes="pcb",
     )
 
 
@@ -789,7 +789,7 @@ def get_V1() -> GroundBased2G:
         xarm_tilt=0,
         yarm_tilt=0,
         elevation=51.884,
-        modes="pc",
+        modes="pcb",
     )
 
 
@@ -872,7 +872,7 @@ def get_CE() -> GroundBased2G:
         xarm_tilt=-6.195e-4,
         yarm_tilt=1.25e-5,
         elevation=142.554,
-        modes="pc",
+        modes="pcb",
     )
 
 
