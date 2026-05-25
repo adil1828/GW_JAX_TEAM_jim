@@ -19,7 +19,7 @@ MRSUN = 1.476625061404649406193430731479084713e3
 year = (1 * u.yr).cgs.value  # type: ignore
 Mpc = 1e6 * pc.value  # m
 euler_gamma = 0.577215664901532860606512090082
-
+EulerGamma = euler_gamma
 EARTH_SEMI_MAJOR_AXIS = 6378137.0  # for ellipsoid model of Earth, in m
 EARTH_SEMI_MINOR_AXIS = 6356752.314  # in m
 
