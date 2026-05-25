@@ -1,6 +1,8 @@
 import jax.numpy as jnp
 from astropy.constants import pc  # type: ignore TODO: fix astropy stubs
 import astropy.units as u  # type: ignore
+G = 6.67430e-11  # m^3 / kg / s^2
+"""Newton's gravitational constant"""
 
 C_SI = 299792458.0
 """ Speed of light, m/s """
@@ -29,3 +31,23 @@ DEG_TO_RAD = jnp.pi / 180
 HR_TO_RAD = 2 * jnp.pi / 24
 HR_TO_SEC: int = 3600
 SEC_TO_RAD = HR_TO_RAD / HR_TO_SEC
+
+"""Pi"""
+PI = 3.141592653589793238462643383279502884
+
+TWO_PI = 6.283185307179586476925286766559005768
+
+gt = G * MSUN / (C**3.0)
+"""
+G MSUN / C^3 in seconds
+"""
+
+m_per_Mpc = 3.085677581491367278913937957796471611e22
+"""
+Meters per Mpc.
+"""
+
+clightGpc = C / 3.0856778570831e22
+"""
+Speed of light in vacuum (:math:`c`), in gigaparsecs per second
+"""
