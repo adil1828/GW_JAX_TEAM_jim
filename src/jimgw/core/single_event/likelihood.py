@@ -615,17 +615,51 @@ class HeterodynedTransientLikelihoodFD(SingleEventLikelihood):
         self.B0_array = {}
         self.B1_array = {}
 
-        frequency_original = self.frequencies
-        freq_grid, self.freq_grid_center = self.make_binning_scheme(
-            jnp.array(frequency_original), n_bins
-        )
-        self.freq_grid_low = freq_grid[:-1]
+        # frequency_original = self.frequencies
+        # freq_grid, self.freq_grid_center = self.make_binning_scheme(
+        #     jnp.array(frequency_original), n_bins
+        # )
+        # self.freq_grid_low = freq_grid[:-1]
 
-        h_sky = reference_waveform(frequency_original, self.reference_parameters)
+        # h_sky = reference_waveform(frequency_original, self.reference_parameters)
+##################################### modification starts ############################################
+        import matplotlib.pyplot as plt
+        import copy
 
+        h_sky = reference_waveform(frequency_original, self.ref_params)
+        h_sky_before = copy.deepcopy(h_sky)
+        
+        ####### lines modified to make the waveform zero above maximum amplitude##
+        cf =1.4765e3
+        c1=2.998e8
+        f_maximum = 0.018/((self.ref_params["M_c"]/self.ref_params["eta"]**0.6)*(cf/c1))
+############################################ l = m =2 #############################################################
+        # Compute cutoff indices for different modes
+        cutoff_index_general = jnp.argmax(frequency_original > f_maximum)
+        cutoff_index_breathing = jnp.argmax(frequency_original > (f_maximum))
+        # Handle case where cutoff is beyond frequency range
+        if frequency_original[-1] <= f_maximum:
+                   cutoff_index_general = None
+       # if frequency_original[-1] <= (f_maximum/2): ## for l = m = 1
+        if frequency_original[-1] <= (f_maximum): ## for l = m = 2
+                   cutoff_index_breathing = None
+        # Zero-out modes above their respective cutoff frequencies
+        for key in h_sky.keys():
+            if key == "b":  # Breathing mode
+                if cutoff_index_breathing is not None:
+                    h_sky[key] = h_sky[key].at[cutoff_index_breathing:].set(0.0)
+        else:  # All other modes
+            if cutoff_index_general is not None:
+                 h_sky[key] = h_sky[key].at[cutoff_index_general:].set(0.0)
+########################################################################################  
+        # Compute amplitude sum across all modes
         h_amp = jnp.sum(
             jnp.array([jnp.abs(h_sky[pol]) for pol in h_sky.keys()]), axis=0
         )
+########################################################################################  
+        waveform_before = h_sky_before['c']
+        waveform_after = h_sky['c']
+########################################################################################        
         f_valid = frequency_original[jnp.where(h_amp > 0)[0]]
         f_waveform_max = jnp.max(f_valid)
         f_waveform_min = jnp.min(f_valid)
