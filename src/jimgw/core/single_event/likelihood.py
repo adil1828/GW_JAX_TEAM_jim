@@ -615,11 +615,11 @@ class HeterodynedTransientLikelihoodFD(SingleEventLikelihood):
         self.B0_array = {}
         self.B1_array = {}
 
-        # frequency_original = self.frequencies
-        # freq_grid, self.freq_grid_center = self.make_binning_scheme(
-        #     jnp.array(frequency_original), n_bins
-        # )
-        # self.freq_grid_low = freq_grid[:-1]
+        frequency_original = self.frequencies
+        freq_grid, self.freq_grid_center = self.make_binning_scheme(
+             jnp.array(frequency_original), n_bins
+         )
+        self.freq_grid_low = freq_grid[:-1]
 
         # h_sky = reference_waveform(frequency_original, self.reference_parameters)
 ##################################### modification starts ############################################
