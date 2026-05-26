@@ -626,13 +626,13 @@ class HeterodynedTransientLikelihoodFD(SingleEventLikelihood):
         import matplotlib.pyplot as plt
         import copy
 
-        h_sky = reference_waveform(frequency_original, self.ref_params)
+        h_sky = reference_waveform(frequency_original, self.reference_parameters)
         h_sky_before = copy.deepcopy(h_sky)
         
         ####### lines modified to make the waveform zero above maximum amplitude##
         cf =1.4765e3
         c1=2.998e8
-        f_maximum = 0.018/((self.ref_params["M_c"]/self.ref_params["eta"]**0.6)*(cf/c1))
+        f_maximum = 0.018/((self.reference_parameters["M_c"]/self.reference_parameters["eta"]**0.6)*(cf/c1))
 ############################################ l = m =2 #############################################################
         # Compute cutoff indices for different modes
         cutoff_index_general = jnp.argmax(frequency_original > f_maximum)
