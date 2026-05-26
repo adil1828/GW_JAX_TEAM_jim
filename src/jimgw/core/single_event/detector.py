@@ -837,6 +837,7 @@ def get_ET() -> list[GroundBased2G]:
                 elevation=elevation,
                 xarm_tilt=xarm_tilt,
                 yarm_tilt=yarm_tilt,
+                modes="pcb",
             )
         )
         # Propagate to next vertex using the spherical forward-azimuth formula.
