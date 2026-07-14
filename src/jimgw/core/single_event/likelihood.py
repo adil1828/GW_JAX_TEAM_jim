@@ -648,9 +648,9 @@ class HeterodynedTransientLikelihoodFD(SingleEventLikelihood):
             if key == "b":  # Breathing mode
                 if cutoff_index_breathing is not None:
                     h_sky[key] = h_sky[key].at[cutoff_index_breathing:].set(0.0)
-        else:  # All other modes
-            if cutoff_index_general is not None:
-                 h_sky[key] = h_sky[key].at[cutoff_index_general:].set(0.0)
+            else:  # All other modes
+                if cutoff_index_general is not None:
+                   h_sky[key] = h_sky[key].at[cutoff_index_general:].set(0.0)
 ########################################################################################  
         # Compute amplitude sum across all modes
         h_amp = jnp.sum(
